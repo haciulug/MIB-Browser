@@ -1,0 +1,59 @@
+
+
+.box3 {
+  position: absolute;
+  left: 33vh;
+  top: 67%;
+  height: 32%;
+  width: 83%;
+  background: #ffffff8c;
+  outline-offset: -6px;
+  outline-color: black;
+  outline-style: double;
+  outline-width: 5px;
+
+}
+
+.input2 {
+  position: relative;
+  left: 15px;
+  top: 15px;
+  width: 98%;
+  display: grid;
+  grid-template-rows: 60px;
+  grid-column-gap: 5px;
+  grid-template-areas:
+    " Z N"
+    " X M"
+    " B B"
+    ;
+}
+
+#Z {
+  grid-area: Z;
+}
+
+#X {
+  grid-area: X;
+}
+
+#C {
+  grid-area: C;
+}
+
+#V {
+  grid-area: V;
+}
+
+#B {
+  grid-area: B;
+  
+}
+
+#N {
+  grid-area: N;
+}
+
+#M {
+  grid-area: M;
+}

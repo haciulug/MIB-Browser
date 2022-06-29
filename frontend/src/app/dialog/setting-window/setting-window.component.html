@@ -1,0 +1,124 @@
+<!-- <h2 mat-dialog-title>Install Angular</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-radio-group class="radio-button" [(ngModel)]="choice">
+        <mat-radio-button class="option1" value="true">SNMPv2</mat-radio-button>
+        <mat-radio-button class="option2" value="false">SNMPv3</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input disabled={{choice}} matInput type="text" [(ngModel)]="username">
+    </mat-form-field>
+    <mat-form-field  appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" disabled={{choice}} [(ngModel)]="password">
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Security Level</mat-label>
+        <mat-select disabled={{choice}} [(ngModel)]="security_level">
+            <mat-option value="no_auth_or_privacy">no_auth_or_privacy</mat-option>
+            <mat-option value="auth_without_privacy">auth_without_privacy</mat-option>
+            <mat-option value="auth_with_privacy">auth_with_privacy</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Auth</mat-label>
+        <mat-select disabled={{choice}} [(ngModel)]="auth_protocol">
+            <mat-option value="MD5">MD5</mat-option>
+            <mat-option value="SHA">SHA</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" mat-dialog-close (click)="setting()">Save</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+
+</mat-dialog-actions> -->
+<form *ngIf="settingForm" [formGroup]="settingForm">
+    <h2 mat-dialog-title>Install Angular</h2>
+    <mat-dialog-content class="mat-typography">
+        <div aling="center">
+            <mat-form-field id="Q" appearance="legacy" style="padding: 2px;">
+                <mat-label id="hostname">Host</mat-label>
+                <input matInput type="text" placeholder="Host" formControlName="hostnameControl">
+            </mat-form-field>
+            <mat-form-field id="R" appearance="legacy" style="padding: 2px;">
+                <mat-label>Port</mat-label>
+                <input matInput placeholder="Port" formControlName="portControl">
+            </mat-form-field>
+        </div>
+        <div align="center">
+            <mat-radio-group class="radio-button" formControlName="choiceControl" style="padding: 2px;">
+                <mat-radio-button class="option1" [value]="2">SNMPv2</mat-radio-button>
+                <mat-radio-button class="option2" [value]="3">SNMPv3</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div align="center" style="padding: 2px;">
+            <mat-form-field id="W" appearance="legacy" *ngIf="choiseControl?.value === 2" style="padding: 2px;">
+                <mat-label>Community</mat-label>
+                <input type="password" matInput placeholder="Community" formControlName="community">
+            </mat-form-field>
+            <mat-form-field id="T" appearance="legacy" *ngIf="choiseControl?.value === 2" style="padding: 2px;">
+                <mat-label>Write Community</mat-label>
+                <input type="password" matInput placeholder="Write Community" formControlName="writeCommunity">
+            </mat-form-field>
+
+            <mat-form-field *ngIf="choiseControl?.value === 3" style="padding: 2px;">
+                <mat-label>Security Level</mat-label>
+                <mat-select formControlName="security_levelControl">
+                    <mat-option value="no_auth_or_privacy">no_auth_or_privacy</mat-option>
+                    <mat-option value="auth_without_privacy">auth_without_privacy</mat-option>
+                    <mat-option value="auth_with_privacy">auth_with_privacy</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="legacy" *ngIf="choiseControl?.value === 3" style="padding: 2px;">
+                <mat-label>Username</mat-label>
+                <input matInput type="text" formControlName="usernameControl">
+            </mat-form-field>
+
+        </div>
+        <div>
+            <mat-form-field appearance="legacy" style="padding: 2px;"
+                *ngIf="choiseControl?.value === 3 && (settingForm.get('security_levelControl')?.value === 'auth_without_privacy' || settingForm.get('security_levelControl')?.value === 'auth_with_privacy') ">
+                <mat-label>Auth Password</mat-label>
+                <input matInput type="password" formControlName="passwordControl">
+            </mat-form-field>
+
+            <mat-form-field
+                *ngIf="choiseControl?.value === 3 && (settingForm.get('security_levelControl')?.value === 'auth_without_privacy' || settingForm.get('security_levelControl')?.value === 'auth_with_privacy' )"
+                style="padding: 2px;">
+                <mat-label>Auth Protocol</mat-label>
+                <mat-select formControlName="auth_protocolControl">
+                    <mat-option value="MD5">MD5</mat-option>
+                    <mat-option value="SHA">SHA</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="legacy"
+                *ngIf="choiseControl?.value === 3 &&settingForm.get('security_levelControl')?.value === 'auth_with_privacy' "
+                style="padding: 2px;">
+                <mat-label>Privacy Password</mat-label>
+                <input matInput type="password" formControlName="privacy_password">
+            </mat-form-field>
+            <mat-form-field
+                *ngIf="choiseControl?.value === 3 && settingForm.get('security_levelControl')?.value === 'auth_with_privacy' "
+                style="padding: 2px;">
+                <mat-label>Privacy Protocol</mat-label>
+                <mat-select formControlName="privacy_protocolControl">
+                    <mat-option value="AES">AES</mat-option>
+                    <mat-option value="DES">DES</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-error *ngIf="errorFlag">Bad Response</mat-error>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" (click)="updateSetting()">Save</button>
+        <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+
+    </mat-dialog-actions>
+</form>

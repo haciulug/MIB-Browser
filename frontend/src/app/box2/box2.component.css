@@ -1,0 +1,91 @@
+.box2 {
+  position: absolute;
+  left: 33vh;
+  top: 0px;
+  height: 67%;
+  width: 83%;
+  background: #ffffffaf;
+  outline-offset: -6px;
+  outline-color: black;
+  outline-style: double;
+  outline-width: 5px;
+}
+
+.input {
+  position: relative;
+  left: 15px;
+  width: 98%;
+  top: 15px;
+  display: grid;
+  padding: 0;
+  padding-bottom: 0.5%;
+  grid-column-gap: 5px;
+  grid-template-rows: 60px;
+  grid-template-areas:
+    " Q R "
+    
+    ;
+}
+
+#Q {
+  grid-area: Q;
+}
+
+#R {
+  grid-area: R;
+}
+
+#W {
+  grid-area: W;
+}
+
+#T {
+  grid-area: T;
+}
+
+#E {
+  grid-area: E;
+}
+
+#U {
+  grid-area: U;
+}
+
+.button2 {
+  position: relative;
+  top: 3px;
+  left: 12px;
+  padding: 2px 22px;
+  margin: 4px;
+  color: white;
+  border: 1.5px groove black;
+  box-shadow: 4px 5px 5px #000;
+}
+
+.output {
+  position: relative;
+  left: 15px;
+  top: 15px;
+  width: 97%;
+  height: 74%;
+  background: rgb(168, 168, 168);
+  border: 5px double black;
+  box-shadow: 3px 3px 4px #000;
+  overflow-y: scroll;
+}
+
+.outputp {
+  font-size: 20px;
+
+}
+
+.button-bg2 {
+  position: relative;
+  top: 10px;
+  left: 15px;
+  height: 60px;
+  width: 27%;
+  background-color: gainsboro;
+  border: 2px solid black;
+  border-radius: 5%;
+}

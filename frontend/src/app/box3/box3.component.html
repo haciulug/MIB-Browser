@@ -1,0 +1,32 @@
+<div class="box3">
+  <div class="input2">
+    <mat-form-field id="Z" appearance="outline">
+      <mat-label>Syntax: {{getSyntax}}</mat-label>
+      <input matInput disabled placeholder="Syntax">
+    </mat-form-field>
+    <mat-form-field id="X" appearance="outline">
+      <mat-label>Access: {{getAccess}}</mat-label>
+      <input matInput disabled placeholder="Access">
+    </mat-form-field>
+    <!-- <mat-form-field id="C" appearance="outline">
+      <mat-label>Index</mat-label>
+      <input matInput disabled placeholder="Index">
+    </mat-form-field> -->
+    <mat-form-field id="M" appearance="outline">
+      <mat-label * [(ngModel)]="oid">Object ID:{{getOid}} </mat-label>
+      <input matInput disabled [value]="'Object ID: '+getOid">
+    </mat-form-field>
+    <mat-form-field id="B" appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput disabled placeholder="Description">
+    </mat-form-field>
+    <mat-form-field id="N" appearance="outline">
+      <mat-label>Status: {{getStatus}}</mat-label>
+      <input matInput disabled placeholder="Status">
+    </mat-form-field>
+    <!-- <mat-form-field id="M" appearance="outline">
+      <mat-label>Reference</mat-label>
+      <input matInput disabled placeholder="Reference">
+    </mat-form-field> -->
+  </div>
+</div>

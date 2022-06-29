@@ -1,0 +1,41 @@
+<div class="box2">
+  <div class="input">
+    <mat-form-field id="Q" appearance="outline">
+      <mat-label>Object ID</mat-label>
+      <input matInput type="text" (input)="setOid($event)" [(ngModel)]="oid" [value]="getOid">
+    </mat-form-field>
+
+    <mat-form-field id="R" appearance="outline">
+      <mat-label>Set Value</mat-label>
+      <input matInput type="text" placeholder="Set Value" [(ngModel)]="value">
+    </mat-form-field>
+    
+
+    
+
+
+  </div>
+  <div class="button-bg2">
+    <button mat-raised-button color="primary" class="button2" title="Get" aria-hidden="true">
+      <mat-icon class="material-icons-outlined" (click)="getFunc()">get_app</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" class="button2" title="Set">
+      <mat-icon class="material-icons-outlined" (click)="setFunc(value)">upload</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" class="button2" title="Walk">
+      <mat-icon class="material-icons-outlined" (click)="walkFunc()">directions_run</mat-icon>
+    </button>
+    <button mat-raised-button color="warn" class="button2" title="Stop" (click)="setStopFlag()">
+      <mat-icon class="material-icons-outlined">cancel</mat-icon>
+    </button><button mat-raised-button color="primary" class="button2" title="TrapViewer" (click)="trapDialog()">
+      <mat-icon class="material-icons-outlined">search</mat-icon>
+    </button>
+
+
+  </div>
+
+  <div class="output" id="output">
+    <p class="outputp" id="outputp" *ngFor="let item of _httpRes">{{item | json}}</p>
+
+  </div>
+</div>
